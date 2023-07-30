@@ -30,7 +30,6 @@ by ceRNAR algorithm with those from other tools, such as SPONGE (List et al.,
 2019) and RJAMI (Hornakova et al.,2018)
 }
 \examples{
-library(SPONGE)
 ceRNAIntegrate(
 path_prefix = NULL,
 project_name = 'demo',

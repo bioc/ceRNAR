@@ -9,7 +9,6 @@
 #' @import tidyverse
 #' @import future
 #' @import zoo
-#' @importFrom stats pnorm
 #'
 #' @param path_prefix user's working directory
 #' @param project_name the project name that users can assign (default: demo)
