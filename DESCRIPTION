@@ -54,7 +54,8 @@ Imports:
     GDCRNATools,
     parallel,
     biomaRt,
-    dplyr
+    dplyr,
+    curatedTCGAData
 VignetteBuilder: knitr
 RoxygenNote: 7.2.3
 Suggests: 
