@@ -16,6 +16,9 @@ A R data frame with 78 rows and 45 variables
 \usage{
 data(mirna_exp)
 }
+\value{
+a dataframe object
+}
 \description{
 A data set with the mirna expression for 45 subjects
 }

@@ -12,6 +12,9 @@
 #'   including status and time, and each row as a different individual.}
 #' }
 #' @source <https://www.github.com/ywhsiao/ceRNAR>
+#'
+#' @return a dataframe object
+#'
 #' @examples
 #' data(surv_data)
 #' head(surv_data)

@@ -17,6 +17,9 @@ A R data frame with 185 rows and 45 variables
 \usage{
 data(gene_exp)
 }
+\value{
+a dataframe object
+}
 \description{
 A data set with the gene expression for 45 subjects
 }

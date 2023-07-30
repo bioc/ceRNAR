@@ -13,6 +13,8 @@
 #'   columns as a different individual and each row as a separate miRNA.}}
 #' @source <https://www.github.com/ywhsiao/ceRNAR>
 #'
+#' @return a dataframe object
+#'
 #' @examples
 #' data(mirna_exp)
 #' head(mirna_exp[,1:5])

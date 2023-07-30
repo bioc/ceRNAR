@@ -17,6 +17,9 @@ A R data frame with 78 rows and 45 variables
 \usage{
 data(surv_data)
 }
+\value{
+a dataframe object
+}
 \description{
 A data set with the survival outcome for 45 subjects
 }

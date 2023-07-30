@@ -13,7 +13,7 @@
 #'    as a different individual and each row as a separate gene.}
 #' }
 #' @source <https://www.github.com/ywhsiao/ceRNAR>
-#'
+#' @return a dataframe object
 #' @examples
 #' data(gene_exp)
 #' head(gene_exp[,1:5])
