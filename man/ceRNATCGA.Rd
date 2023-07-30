@@ -14,6 +14,9 @@ ceRNATCGA(path_prefix = NULL, project_name = "TCGA", disease_name = "DLBC")
 \item{disease_name}{the abbreviation of disease that users are interested in
 (default = 'DLBC')}
 }
+\value{
+none
+}
 \description{
 A function to retrieve TCGA data
 }

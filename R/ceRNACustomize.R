@@ -14,6 +14,7 @@
 #' @param mirna_exp location of miRNA expression data (default: mirna_exp)
 #' @param surv_data location of survival data (default: surv_data)
 #'
+#' @return none
 #' @export
 #'
 #' @examples

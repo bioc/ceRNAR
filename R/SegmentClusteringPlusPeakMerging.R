@@ -18,6 +18,7 @@
 #' (default: 0.85)
 #' @param window_size the number of samples for each window (default: 10)
 #'
+#' @return a dataframe object
 #' @export
 #'
 #' @examples

@@ -21,6 +21,7 @@
 #' @param disease_name the abbreviation of disease that users are interested in
 #' @param num_workers the number of CPU
 #'
+#' @return a dataframe object
 #' @export
 #'
 #' @examples

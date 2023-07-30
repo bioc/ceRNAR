@@ -10,6 +10,7 @@
 #' @param project_name the project name that users can assign
 #' @param disease_name the abbreviation of disease that users are interested in
 #'
+#' @return a dataframe object
 #' @export
 #'
 #' @examples

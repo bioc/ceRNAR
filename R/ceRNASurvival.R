@@ -12,6 +12,7 @@
 #' @param disease_name the abbreviation of disease that users are interested in
 #' @param mirnas a list of mirna name
 #'
+#' @return a list object
 #' @export
 #'
 #' @examples
