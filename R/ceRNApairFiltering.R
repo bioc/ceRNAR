@@ -14,7 +14,6 @@
 #' @param window_size the number of samples for each window (default: 10)
 #' @param cor_method selection of correlation methods, including pearson and
 #' spearman (default: pearson)
-#' @param num_workers the number of CPU
 #'
 #' @returns file
 #' @export

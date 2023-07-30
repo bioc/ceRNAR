@@ -4,6 +4,7 @@
 #' @description A function to retrieve TCGA data
 #'
 #' @import utils
+#' @import curatedTCGAData
 #'
 #' @param path_prefix user's working directory
 #' @param project_name the project name that users can assign (default = 'TCGA')
@@ -45,7 +46,7 @@ ceRNATCGA <- function(path_prefix = NULL,
 
   time1 <- Sys.time()
 
-  (TCGA <- curatedTCGAData::curatedTCGAData(
+  (TCGA <- curatedTCGAData(
     disease_name, c("RNASeq*", "miRNA*"), version = "2.0.1", dry.run = FALSE
   ))
   exportClass(TCGA, dir = paste0(path_prefix, project_name,'-', disease_name, '/01_rawdata'), fmt = "csv", ext = ".csv")

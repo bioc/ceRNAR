@@ -25,7 +25,6 @@
 #'
 #' @returns a dataframe object
 #' @export
-#' @export
 #'
 #' @examples
 #' data(gene_exp)

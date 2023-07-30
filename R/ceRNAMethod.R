@@ -18,7 +18,6 @@
 #' spearman (default: pearson)
 #' @param cor_threshold_peak peak threshold of correlation value between 0 and 1
 #' (default: 0.85)
-#' @param num_workers the number of CPU
 #'
 #' @returns a dataframe object
 #' @export
