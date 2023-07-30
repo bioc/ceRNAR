@@ -1,7 +1,7 @@
 Package: ceRNAR
 Type: Package
 Title: ceRNAR: An R Package for Identification and Analysis of ceRNAs-miRNA Triplets
-Version: 0.99.0
+Version: 0.99.1
 Authors@R: c(person(given = "Yi-Wen",
            family = "Hsiao",
            role = c("aut", "cre"),
@@ -56,7 +56,7 @@ Imports:
     biomaRt,
     dplyr
 VignetteBuilder: knitr
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Suggests: 
   rmarkdown,
   knitr,

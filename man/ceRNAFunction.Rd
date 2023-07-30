@@ -8,7 +8,12 @@ ceRNAFunction(
   path_prefix = NULL,
   project_name = "demo",
   disease_name = "DLBC",
-  pairs_cutoff = 1
+  pairs_cutoff = 1,
+  kegg_p_cutoff = 0.01,
+  kegg_top = 10,
+  go_p_cutoff = 0.05,
+  go_q_cutoff = 0.05,
+  go_top = 10
 )
 }
 \arguments{
@@ -21,6 +26,16 @@ ceRNAFunction(
 
 \item{pairs_cutoff}{at least the number of ceRNA pairs that a mirna must have
 (default: 1)}
+
+\item{kegg_p_cutoff}{a predifined cutoff value of p-value from enrichment analysis based on KEGG database (default: 0.01)}
+
+\item{kegg_top}{the number of top KEGG category to show in the graphic display (default: 10)}
+
+\item{go_p_cutoff}{a predifined cutoff value of p-value from enrichment analysis based on GO database (default: 0.05)}
+
+\item{go_q_cutoff}{a predifined cutoff value of p-value from enrichment analysis based on GO database (default: 0.05)}
+
+\item{go_top}{the number of top GO category to show in the graphic display (default: 10)}
 }
 \value{
 a list object
@@ -36,7 +51,12 @@ ceRNAFunction(
 path_prefix = NULL,
 project_name = 'demo',
 disease_name = 'DLBC',
-pairs_cutoff = 1
+pairs_cutoff = 1,
+kegg_p_cutoff = 0.01,
+kegg_top = 10,
+go_p_cutoff = 0.05,
+go_q_cutoff = 0.05,
+go_top = 10
 )
 
 

@@ -62,7 +62,7 @@ SegmentClusteringPlusPeakMerging(project_name = 'demo', disease_name = "DLBC", w
 4. conduct downstream analysis
 
 ```{r eval=FALSE}
-ceRNAFunction(project_name = 'demo', disease_name = 'DLBC', pairs_cutoff = 1)
+ceRNAFunction(project_name = 'demo', disease_name = 'DLBC', pairs_cutoff = 1, kegg_p_cutoff = 0.01, kegg_top = 10, go_p_cutoff = 0.05, go_q_cutoff = 0.05, go_top = 10)
 ceRNALocation(project_name = 'demo', disease_name = 'DLBC', mirna = 'hsa-miR-101-3p', window_size = 10)
 ceRNAModule(project_name = 'demo', disease_name = 'DLBC', pairs_cutoff = 5, column_sum = 1)
 ceRNASurvival(project_name = 'demo', disease_name = 'DLBC', mirnas = 'hsa-miR-101-3p')

@@ -15,6 +15,11 @@
 #' (default: DLBC)
 #' @param pairs_cutoff at least the number of ceRNA pairs that a mirna must have
 #'  (default: 1)
+#' @param kegg_p_cutoff a predifined cutoff value of p-value from enrichment analysis based on KEGG database (default: 0.01)
+#' @param kegg_top the number of top KEGG category to show in the graphic display (default: 10)
+#' @param go_p_cutoff a predifined cutoff value of p-value from enrichment analysis based on GO database (default: 0.05)
+#' @param go_q_cutoff a predifined cutoff value of p-value from enrichment analysis based on GO database (default: 0.05)
+#' @param go_top the number of top GO category to show in the graphic display (default: 10)
 #'
 #' @returns a list object
 #' @export
@@ -24,7 +29,12 @@
 #' path_prefix = NULL,
 #' project_name = 'demo',
 #' disease_name = 'DLBC',
-#' pairs_cutoff = 1
+#' pairs_cutoff = 1,
+#' kegg_p_cutoff = 0.01,
+#' kegg_top = 10,
+#' go_p_cutoff = 0.05,
+#' go_q_cutoff = 0.05,
+#' go_top = 10
 #' )
 #'
 #'
@@ -33,7 +43,13 @@
 ceRNAFunction <- function(path_prefix = NULL,
                           project_name = 'demo',
                           disease_name = 'DLBC',
-                          pairs_cutoff = 1){
+                          pairs_cutoff = 1,
+                          kegg_p_cutoff = 0.01,
+                          kegg_top = 10,
+                          go_p_cutoff = 0.05,
+                          go_q_cutoff = 0.05,
+                          go_top = 10
+                          ){
 
   if (is.null(path_prefix)){
     path_prefix <- fs::path_home()
@@ -96,12 +112,12 @@ ceRNAFunction <- function(path_prefix = NULL,
   message('\u2605 Running KEGG ORA analysis ...')
   kk <- clusterProfiler::enrichKEGG(gene = gene.df[,3],
                                     organism = 'hsa',
-                                    pvalueCutoff = 0.01)
+                                    pvalueCutoff = kegg_p_cutoff)
 
   kk_df <- as.data.frame(kk@result)
   utils::write.csv(kk_df,paste0(path_prefix, project_name,'-',disease_name,'/04_downstreamAnalyses/functionResults/',project_name,'-',disease_name,'_kegg_ora.csv'), row.names = FALSE)
-  kk_babble <- enrichplot::dotplot(kk, showCategory=10,orderBy = "x")+ ggplot2::ggtitle('Dotplot for ORA based on KEGG')
-  kk_bar <- graphics::barplot(kk,showCategory = 10)+ ggplot2::ggtitle('Barplot for ORA based on KEGG')
+  kk_babble <- enrichplot::dotplot(kk, showCategory = kegg_top,orderBy = "x")+ ggplot2::ggtitle('Dotplot for ORA based on KEGG')
+  kk_bar <- graphics::barplot(kk,showCategory = kegg_top)+ ggplot2::ggtitle('Barplot for ORA based on KEGG')
 
   # go ora
   message('\u2605 Running GO ORA analysis ...')
@@ -114,13 +130,13 @@ ceRNAFunction <- function(path_prefix = NULL,
                                      OrgDb         = db,
                                      ont           = go_level,
                                      pAdjustMethod = "BH",
-                                     pvalueCutoff  = 0.01,
-                                     qvalueCutoff  = 0.05,
+                                     pvalueCutoff  = go_p_cutoff,
+                                     qvalueCutoff  = go_q_cutoff,
                                      readable      = TRUE)
     clusterProfiler::simplify(ego, cutoff=0.7, by="p.adjust", select_fun=min)
   }
   plotGOora_babble <- function(go_level, enrichResult){
-    enrichplot::dotplot(enrichResult, showCategory=10,orderBy = "x")+ ggplot2::ggtitle(paste0('Dotplot for ORA based on GO:', go_level))
+    enrichplot::dotplot(enrichResult, showCategory=go_top,orderBy = "x")+ ggplot2::ggtitle(paste0('Dotplot for ORA based on GO:', go_level))
   }
 
   go <- purrr::map(go_level, runGOora)
