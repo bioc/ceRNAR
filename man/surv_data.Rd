@@ -4,16 +4,6 @@
 \name{surv_data}
 \alias{surv_data}
 \title{Example survival dataset for ceRNAR}
-\format{
-A R data frame with 78 rows and 45 variables
-\describe{
-  \item{survival data}{Numeric survival matrix with two columns,
-  including status and time, and each row as a different individual.}
-}
-}
-\source{
-<https://www.github.com/ywhsiao/ceRNAR>
-}
 \usage{
 data(surv_data)
 }
@@ -22,5 +12,5 @@ A data set with the survival outcome for 45 subjects
 }
 \examples{
 data(surv_data)
+head(surv_data)
 }
-\keyword{datasets}
