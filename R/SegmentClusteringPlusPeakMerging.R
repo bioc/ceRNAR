@@ -10,12 +10,6 @@
 #' @import future
 #' @import zoo
 #' @rawNamespace import(magrittr, except = set_names)
-#' @importFrom gRbase combn_prim
-#' @importFrom dplyr select
-#' @importFrom ggpubr font
-#' @importFrom randomForest margin
-#' @importFrom randomForest combine
-#' @importFrom rlang exprs
 #'
 #' @param path_prefix user's working directory
 #' @param project_name the project name that users can assign (default: demo)

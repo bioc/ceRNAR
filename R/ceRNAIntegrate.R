@@ -10,7 +10,6 @@
 #' @import SPONGE
 #' @importFrom gRbase combn_prim
 #' @importFrom dplyr select
-#' @importFrom ggpubr font
 #' @importFrom randomForest margin
 #' @importFrom randomForest combine
 #' @importFrom rlang exprs
