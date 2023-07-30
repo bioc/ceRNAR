@@ -6,6 +6,7 @@
 #'
 #' @import foreach
 #' @import utils
+#' @import future
 #'
 #' @param path_prefix user's working directory
 #' @param project_name the project name that users can assign (default: demo)
@@ -67,7 +68,7 @@ ceRNApairFilering <- function(path_prefix = NULL,
       num_workers <- 1L
     } else {
       # use all cores in devtools::test()
-      num_workers <- future::availableCores()-3
+      num_workers <- availableCores()-3
     }
 
     # create a cluster

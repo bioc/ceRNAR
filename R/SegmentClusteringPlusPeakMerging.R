@@ -7,6 +7,7 @@
 #' @import tidyverse
 #' @import cvms
 #' @import rlang
+#' @import future
 #' @rawNamespace import(magrittr, except = set_names)
 #'
 #' @param path_prefix user's working directory
@@ -70,7 +71,7 @@ SegmentClusteringPlusPeakMerging <- function(path_prefix = NULL,
       num_workers <- 1L
     } else {
       # use all cores in devtools::test()
-      num_workers <- future::availableCores()-1
+      num_workers <- availableCores()-1
     }
 
     # create a cluster

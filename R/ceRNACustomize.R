@@ -4,6 +4,7 @@
 #' @description A function to allow users to upload their own data
 #'
 #' @import utils
+#' @importFrom methods is
 #'
 #' @param path_prefix user's working directory
 #' @param project_name the project name that users can assign (default: demo)

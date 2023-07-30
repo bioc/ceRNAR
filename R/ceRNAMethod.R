@@ -7,6 +7,7 @@
 #' @import foreach
 #' @import utils
 #' @import tidyverse
+#' @import future
 #' @importFrom stats pnorm
 #'
 #' @param path_prefix user's working directory
@@ -90,7 +91,7 @@ ceRNAMethod <- function(path_prefix = NULL,
         num_workers <- 1L
       } else {
         # use all cores in devtools::test()
-        num_workers <- future::availableCores()-1
+        num_workers <- availableCores()-1
       }
 
       # create a cluster
@@ -212,7 +213,7 @@ ceRNAMethod <- function(path_prefix = NULL,
         num_workers <- 1L
       } else {
         # use all cores in devtools::test()
-        num_workers <- future::availableCores()-1
+        num_workers <- availableCores()-1
       }
 
       # create a cluster

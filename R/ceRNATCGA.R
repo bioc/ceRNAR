@@ -5,6 +5,7 @@
 #'
 #' @import utils
 #' @import curatedTCGAData
+#' @importFrom methods is
 #'
 #' @param path_prefix user's working directory
 #' @param project_name the project name that users can assign (default = 'TCGA')

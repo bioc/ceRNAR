@@ -1,4 +1,4 @@
-#' @name gene_exp_data
+#' @name gene_exp
 #' @title Example gene expression dataset for ceRNAR
 #'
 #' @description A data set with the gene expression for 45 subjects

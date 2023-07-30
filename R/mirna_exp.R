@@ -1,4 +1,4 @@
-#' @name mirna_exp_data
+#' @name mirna_exp
 #' @title Example mirna expression dataset for ceRNAR
 #'
 #' @description A data set with the mirna expression for 45 subjects
