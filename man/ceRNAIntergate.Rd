@@ -21,9 +21,6 @@ ceRNAIntegrate(
 
 \item{num_workers}{the number of CPU}
 }
-\value{
-a dataframe object
-}
 \description{
 A function to integrate the possible ceRNA pairs that are found
 by ceRNAR algorithm with those from other tools, such as SPONGE (List et al.,

@@ -11,7 +11,6 @@
 #' @param disease_name the abbreviation of disease that users are interested in
 #' (default = 'DLBC')
 #'
-#' @returns file
 #' @export
 #'
 #' @examples

@@ -13,9 +13,6 @@ ceRNAValidate(path_prefix = NULL, project_name = "demo", disease_name = "DLBC")
 
 \item{disease_name}{the abbreviation of disease that users are interested in}
 }
-\value{
-a dataframe object
-}
 \description{
 A function to validate the potential ceRNA pairs based on the miRSponge database
 (http://www.bio-bigdata.net/miRSponge)

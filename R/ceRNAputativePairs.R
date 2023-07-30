@@ -9,7 +9,6 @@
 #' @param filtering three different filtering criteria, including strict,
 #' moderate and less. (Default: less)
 #'
-#' @returns file
 #' @export
 #'
 #' @examples

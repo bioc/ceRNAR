@@ -14,7 +14,6 @@
 #' @param pairs_cutoff at least the number of ceRNA pairs that a mirna must have
 #' @param column_sum the number of ceRNAs
 #'
-#' @returns a list object
 #' @export
 #'
 #' @examples

@@ -25,9 +25,6 @@ SegmentClusteringPlusPeakMerging(
 
 \item{window_size}{the number of samples for each window (default: 10)}
 }
-\value{
-a dataframe object
-}
 \description{
 A function to conduct two of three steps in algorithm, that is, segment clustering and peak merging
 }

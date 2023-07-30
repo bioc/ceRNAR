@@ -15,7 +15,6 @@
 #' @param cor_method selection of correlation methods, including pearson and
 #' spearman (default: pearson)
 #'
-#' @returns file
 #' @export
 #'
 #' @examples

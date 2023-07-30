@@ -24,9 +24,6 @@ ceRNALocation(
 \item{window_size}{the number of samples for each window and usually about
 one third of total samples}
 }
-\value{
-a list object
-}
 \description{
 A function to visualize the peak location at certain miRNA level
 }

@@ -21,7 +21,6 @@
 #' @param go_q_cutoff a predifined cutoff value of p-value from enrichment analysis based on GO database (default: 0.05)
 #' @param go_top the number of top GO category to show in the graphic display (default: 10)
 #'
-#' @returns a list object
 #' @export
 #'
 #' @examples

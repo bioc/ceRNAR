@@ -3,6 +3,4 @@
 .RData
 .Ruserdata
 .DS_Store
-inst/doc
-/doc/
-/Meta/
+ceRNAR.Rproj

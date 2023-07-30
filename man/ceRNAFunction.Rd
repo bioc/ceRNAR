@@ -37,9 +37,6 @@ ceRNAFunction(
 
 \item{go_top}{the number of top GO category to show in the graphic display (default: 10)}
 }
-\value{
-a list object
-}
 \description{
 A function to conduct Functional enrichment analysis for
 biological interpretation. The databases supported in this function include
