@@ -7,6 +7,7 @@
 #' @import foreach
 #' @import utils
 #' @import future
+#' @import zoo
 #'
 #' @param path_prefix user's working directory
 #' @param project_name the project name that users can assign (default: demo)

@@ -8,6 +8,7 @@
 #' @import cvms
 #' @import rlang
 #' @import future
+#' @import zoo
 #' @rawNamespace import(magrittr, except = set_names)
 #'
 #' @param path_prefix user's working directory

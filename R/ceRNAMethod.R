@@ -8,6 +8,7 @@
 #' @import utils
 #' @import tidyverse
 #' @import future
+#' @import zoo
 #' @importFrom stats pnorm
 #'
 #' @param path_prefix user's working directory
@@ -122,8 +123,8 @@ ceRNAMethod <- function(path_prefix = NULL,
           #s=3
           y <- gene_mir[,c(1,r,s)]
           y <- y[order(y$miRNA),]
-          corr <- zoo::rollapply(y, width=w, function(x) stats::cor(x[,2],x[,3],method = cor_method), by.column=FALSE)
-          miRNA <- zoo::rollapply(y, width=w, function(x) mean(x[,1]), by.column=FALSE)
+          corr <- rollapply(y, width=w, function(x) stats::cor(x[,2],x[,3],method = cor_method), by.column=FALSE)
+          miRNA <- rollapply(y, width=w, function(x) mean(x[,1]), by.column=FALSE)
           data <- data.frame(cbind(miRNA,corr))
           data <- data[order(data$miRNA),]
           data$corr
@@ -133,8 +134,8 @@ ceRNAMethod <- function(path_prefix = NULL,
         getordermiRNA <- function(){
           y <- gene_mir[,c(1,1,1)]
           y <- y[order(y$miRNA),]
-          #corr <- zoo::rollapply(y, width=w, function(x) cor(x[,2],x[,3],method = cor_method), by.column=FALSE)
-          miRNA <- zoo::rollapply(y, width=w, function(x) mean(x[,1]), by.column=FALSE)
+          #corr <- rollapply(y, width=w, function(x) cor(x[,2],x[,3],method = cor_method), by.column=FALSE)
+          miRNA <- rollapply(y, width=w, function(x) mean(x[,1]), by.column=FALSE)
           #data <- data.frame(cbind(miRNA,corr))
           #data <- data[order(data$miRNA),]
           #data$miRNA

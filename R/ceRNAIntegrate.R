@@ -5,16 +5,14 @@
 #' by ceRNAR algorithm with those from other tools, such as SPONGE (List et al.,
 #' 2019) and RJAMI (Hornakova et al.,2018)
 #'
-#' @rawNamespace import(biomaRt, except = select)
-#' @rawNamespace import(Biobase, except = c(combine, exprs))
-#' @rawNamespace import(cvms, except = font)
-#' @rawNamespace import(ggplot2, except = margin)
-#' @rawNamespace import(dplyr, except = combine)
-#' @importFrom gRbase combn_prim
-#' @import rlang
-#' @import SPONGE
 #' @import utils
 #' @import GDCRNATools
+#' @importFrom gRbase combn_prim
+#' @importFrom dplyr select
+#' @importFrom ggpubr font
+#' @importFrom randomForest margin
+#' @importFrom randomForest combine
+#' @importFrom rlang exprs
 #'
 #' @param path_prefix user's working directory
 #' @param project_name the project name that users can assign
