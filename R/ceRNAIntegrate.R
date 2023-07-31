@@ -9,10 +9,11 @@
 #' @import GDCRNATools
 #' @importFrom gRbase combn_prim
 #' @importFrom dplyr select
-#' @importFrom ggpubr font
+#' @importFrom cvms font
 #' @importFrom randomForest margin
 #' @importFrom randomForest combine
 #' @importFrom rlang exprs
+#' @rawNamespace import(ggpubr, except=font)
 #'
 #' @param path_prefix user's working directory
 #' @param project_name the project name that users can assign
