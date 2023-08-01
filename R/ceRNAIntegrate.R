@@ -7,6 +7,8 @@
 #'
 #' @import utils
 #' @import GDCRNATools
+#' @import Biobase
+#' @import biomaRt
 #' @importFrom gRbase combn_prim
 #' @importFrom dplyr select
 #' @importFrom cvms font
