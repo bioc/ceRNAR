@@ -2,8 +2,7 @@ Package: ceRNAR
 Type: Package
 Title: ceRNAR: An R Package for Identification and Analysis of
         ceRNAs-miRNA Triplets
-Version: 0.99.18
-Maintainer: Yi-Wen Hsiao <y.w.hsiao9419@gmail.com>
+Version: 0.99.19
 Authors@R: c(person(given = "Yi-Wen",
            family = "Hsiao",
            role = c("aut", "cre"),
