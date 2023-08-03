@@ -18,8 +18,8 @@
 #' @param gene_exp location of gene expression data (default: gene_exp)
 #' @param mirna_exp location of miRNA expression data (default: mirna_exp)
 #' @param surv_data location of survival data (default: surv_data)
-#' @param filtering three different filtering criteria, including "strict",
-#' "moderate" and "less". (Default: more)
+#' @param filtering three different filtering criteria, including strict,
+#' moderate and less. (Default: less)
 #' @param window_size the number of samples for each window (default:10)
 #' @param cor_method selection of correlation methods, including pearson and
 #' spearman (default: pearson)
@@ -40,7 +40,7 @@
 #' gene_exp = gene_exp,
 #' mirna_exp = mirna_exp,
 #' surv_data = surv_data,
-#' filtering = 'more',
+#' filtering = 'less',
 #' window_size = 10,
 #' cor_method = 'pearson',
 #' cor_threshold_peak = 0.85)
@@ -51,7 +51,7 @@ All_steps_interface <- function(path_prefix = NULL,
                                 gene_exp = gene_exp,
                                 mirna_exp = mirna_exp,
                                 surv_data = surv_data,
-                                filtering = 'more',
+                                filtering = 'less',
                                 window_size = 10,
                                 cor_method = 'pearson',
                                 cor_threshold_peak = 0.85){
@@ -184,7 +184,7 @@ All_steps_interface <- function(path_prefix = NULL,
   ceRNAputativePairs <- function(path_prefix = NULL,
                                  project_name = 'demo',
                                  disease_name = 'DLBC',
-                                 filtering = 'more'){
+                                 filtering = 'less'){
 
     if (!stringr::str_detect(path_prefix, '/')){
       path_prefix <- paste0(path_prefix, '/')
@@ -203,18 +203,17 @@ All_steps_interface <- function(path_prefix = NULL,
     miRNA_with_precurer <- miRNA_with_precurer[,-1]
 
     # miRNA-mRNA validation
-   target <- get0("mirna_mrna_pairsdb", envir = asNamespace("ceRNAR"))
-   if (filtering == 'strict'){
-     target.t.val <- target[target$evidence_levels == "Strong" & target$total_counts == 7,]
-     message('\u2605 Filtering: strict')
-   }else if (filtering == 'moderate') {
-     target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts == 7,]
-     message('\u2605 Filtering: moderate')
-   }else if (filtering == 'more'){
-     target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts >= 6,]
-     message('\u2605 Filtering: more')
-   }
-
+    target <- get0("mirna_mrna_pairsdb", envir = asNamespace("ceRNAR"))
+    if (filtering == 'strict'){
+      target.t.val <- target[target$evidence_levels == "Strong" & target$total_counts == 7,]
+      message('\u2605 Filtering: strict')
+    }else if (filtering == 'moderate') {
+      target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts == 7,]
+      message('\u2605 Filtering: moderate')
+    }else if (filtering == 'less'){
+      target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts >= 6,]
+      message('\u2605 Filtering: less')
+    }
 
 
     miRNA_f <- intersect(unique(target.t.val[,c('miRNA_names')]),row.names(miRNA_with_precurer))
