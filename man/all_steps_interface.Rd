@@ -11,7 +11,7 @@ All_steps_interface(
   gene_exp = gene_exp,
   mirna_exp = mirna_exp,
   surv_data = surv_data,
-  filtering = "more",
+  filtering = "less",
   window_size = 10,
   cor_method = "pearson",
   cor_threshold_peak = 0.85
@@ -31,8 +31,8 @@ All_steps_interface(
 
 \item{surv_data}{location of survival data (default: surv_data)}
 
-\item{filtering}{three different filtering criteria, including "strict",
-"moderate" and "less". (Default: more)}
+\item{filtering}{three different filtering criteria, including strict,
+moderate and less. (Default: less)}
 
 \item{window_size}{the number of samples for each window (default:10)}
 
@@ -59,7 +59,7 @@ disease_name = 'DLBC',
 gene_exp = gene_exp,
 mirna_exp = mirna_exp,
 surv_data = surv_data,
-filtering = 'more',
+filtering = 'less',
 window_size = 10,
 cor_method = 'pearson',
 cor_threshold_peak = 0.85)

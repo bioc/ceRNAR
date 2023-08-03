@@ -18,7 +18,7 @@
 #' path_prefix = NULL,
 #' project_name ='demo',
 #' disease_name = 'DLBC',
-#' filtering = NULL
+#' filtering = 'less'
 #' )
 #'
 #'
@@ -26,7 +26,7 @@
 ceRNAputativePairs <- function(path_prefix = NULL,
                                project_name = 'demo',
                                disease_name = 'DLBC',
-                               filtering = NULL){
+                               filtering = 'less'){
 
   if (is.null(path_prefix)){
     path_prefix <- fs::path_home()
@@ -51,24 +51,17 @@ ceRNAputativePairs <- function(path_prefix = NULL,
   miRNA_with_precurer <- miRNA_with_precurer[,-1]
 
   # miRNA-mRNA validation
-  if (is.na(filtering)){
-    message('This is demo case!')
-    target.v.val <- get0("mirna_mrna_pairsdemo", envir = asNamespace("ceRNAR"))
-  }else{
-    target <- get0("mirna_mrna_pairsdb", envir = asNamespace("ceRNAR"))
-    if (filtering == 'strict'){
-      target.t.val <- target[target$evidence_levels == "Strong" & target$total_counts == 7,]
-      message('\u2605 Filtering: strict')
-    }else if (filtering == 'moderate') {
-      target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts == 7,]
-      message('\u2605 Filtering: moderate')
-    }else if (filtering == 'less'){
-      target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts >= 6,]
-      message('\u2605 Filtering: less')
-    }
+  target <- get0("mirna_mrna_pairsdb", envir = asNamespace("ceRNAR"))
+  if (filtering == 'strict'){
+    target.t.val <- target[target$evidence_levels == "Strong" & target$total_counts == 7,]
+    message('\u2605 Filtering: strict')
+  }else if (filtering == 'moderate') {
+    target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts == 7,]
+    message('\u2605 Filtering: moderate')
+  }else if (filtering == 'less'){
+    target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts >= 6,]
+    message('\u2605 Filtering: less')
   }
-
-
 
   miRNA_f <- intersect(unique(target.t.val[,c('miRNA_names')]),row.names(miRNA_with_precurer))
   target.t.val <- target.t.val[target.t.val$miRNA_names %in% miRNA_f,]  # overlap mirna between target database and gse miRNA profiles
