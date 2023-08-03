@@ -11,7 +11,7 @@ All_steps_interface(
   gene_exp = gene_exp,
   mirna_exp = mirna_exp,
   surv_data = surv_data,
-  filtering = "less",
+  filtering = NULL,
   window_size = 10,
   cor_method = "pearson",
   cor_threshold_peak = 0.85
@@ -59,7 +59,7 @@ disease_name = 'DLBC',
 gene_exp = gene_exp,
 mirna_exp = mirna_exp,
 surv_data = surv_data,
-filtering = 'less',
+filtering = NULL,
 window_size = 10,
 cor_method = 'pearson',
 cor_threshold_peak = 0.85)

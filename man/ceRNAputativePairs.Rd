@@ -8,7 +8,7 @@ ceRNAputativePairs(
   path_prefix = NULL,
   project_name = "demo",
   disease_name = "DLBC",
-  filtering = "less"
+  filtering = NULL
 )
 }
 \arguments{
@@ -32,7 +32,7 @@ ceRNAputativePairs(
 path_prefix = NULL,
 project_name ='demo',
 disease_name = 'DLBC',
-filtering = 'less'
+filtering = NULL
 )
 
 

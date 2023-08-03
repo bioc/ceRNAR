@@ -40,7 +40,7 @@
 #' gene_exp = gene_exp,
 #' mirna_exp = mirna_exp,
 #' surv_data = surv_data,
-#' filtering = 'less',
+#' filtering = NULL,
 #' window_size = 10,
 #' cor_method = 'pearson',
 #' cor_threshold_peak = 0.85)
@@ -51,7 +51,7 @@ All_steps_interface <- function(path_prefix = NULL,
                                 gene_exp = gene_exp,
                                 mirna_exp = mirna_exp,
                                 surv_data = surv_data,
-                                filtering = 'less',
+                                filtering = NULL,
                                 window_size = 10,
                                 cor_method = 'pearson',
                                 cor_threshold_peak = 0.85){
@@ -184,7 +184,7 @@ All_steps_interface <- function(path_prefix = NULL,
   ceRNAputativePairs <- function(path_prefix = NULL,
                                  project_name = 'demo',
                                  disease_name = 'DLBC',
-                                 filtering = 'less'){
+                                 filtering = NULL){
 
     if (!stringr::str_detect(path_prefix, '/')){
       path_prefix <- paste0(path_prefix, '/')
@@ -203,16 +203,20 @@ All_steps_interface <- function(path_prefix = NULL,
     miRNA_with_precurer <- miRNA_with_precurer[,-1]
 
     # miRNA-mRNA validation
-    target <- get0("mirna_mrna_pairsdb", envir = asNamespace("ceRNAR"))
-    if (filtering == 'strict'){
-      target.t.val <- target[target$evidence_levels == "Strong" & target$total_counts == 7,]
-      message('\u2605 Filtering: strict')
-    }else if (filtering == 'moderate') {
-      target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts == 7,]
-      message('\u2605 Filtering: moderate')
-    }else if (filtering == 'less'){
-      target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts >= 6,]
-      message('\u2605 Filtering: less')
+    if (is.null(filtering)){
+      target.t.val <-get0("mirna_mrna_pairsdemo", envir = asNamespace("ceRNAR"))
+    }else{
+      target <- get0("mirna_mrna_pairsdb", envir = asNamespace("ceRNAR"))
+      if (filtering == 'strict'){
+        target.t.val <- target[target$evidence_levels == "Strong" & target$total_counts == 7,]
+        message('\u2605 Filtering: strict')
+      }else if (filtering == 'moderate') {
+        target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts == 7,]
+        message('\u2605 Filtering: moderate')
+      }else if (filtering == 'less'){
+        target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts >= 6,]
+        message('\u2605 Filtering: less')
+      }
     }
 
 
