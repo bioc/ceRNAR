@@ -51,7 +51,7 @@ ceRNAputativePairs <- function(path_prefix = NULL,
   miRNA_with_precurer <- miRNA_with_precurer[,-1]
 
   # miRNA-mRNA validation
-  if (is.na(filtering)){
+  if (is.null(filtering)){
     message('This is demo case!')
     target.v.val <- get0("mirna_mrna_pairsdemo", envir = asNamespace("ceRNAR"))
   }else{
