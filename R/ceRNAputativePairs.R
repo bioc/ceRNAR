@@ -8,7 +8,7 @@
 #' @param project_name the project name that users can assign
 #' @param disease_name the abbreviation of disease that users are interested in
 #' @param filtering three different filtering criteria, including "strict",
-#' "moderate" and "less". If the value is null, then a demo case will be applied. (Default: NULL)
+#' "moderate" and "more". (Default: more)
 #'
 #' @return none
 #' @export
@@ -18,7 +18,7 @@
 #' path_prefix = NULL,
 #' project_name ='demo',
 #' disease_name = 'DLBC',
-#' filtering = NULL
+#' filtering = 'more'
 #' )
 #'
 #'
@@ -26,7 +26,7 @@
 ceRNAputativePairs <- function(path_prefix = NULL,
                                project_name = 'demo',
                                disease_name = 'DLBC',
-                               filtering = NULL){
+                               filtering = 'more'){
 
   if (is.null(path_prefix)){
     path_prefix <- fs::path_home()
@@ -51,23 +51,17 @@ ceRNAputativePairs <- function(path_prefix = NULL,
   miRNA_with_precurer <- miRNA_with_precurer[,-1]
 
   # miRNA-mRNA validation
-  if (is.null(filtering)){
-    message('This is demo case!')
-    target.t.val <- get0("mirna_mrna_pairsdemo", envir = asNamespace("ceRNAR"))
-  }else{
-    target <- get0("mirna_mrna_pairsdb", envir = asNamespace("ceRNAR"))
-    if (filtering == 'strict'){
-      target.t.val <- target[target$evidence_levels == "Strong" & target$total_counts == 7,]
-      message('\u2605 Filtering: strict')
-    }else if (filtering == 'moderate') {
-      target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts == 7,]
-      message('\u2605 Filtering: moderate')
-    }else if (filtering == 'less'){
-      target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts >= 6,]
-      message('\u2605 Filtering: less')
-    }
+  target <- get0("mirna_mrna_pairsdb", envir = asNamespace("ceRNAR"))
+  if (filtering == 'strict'){
+    target.t.val <- target[target$evidence_levels == "Strong" & target$total_counts == 7,]
+    message('\u2605 Filtering: strict')
+  }else if (filtering == 'moderate') {
+    target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts == 7,]
+    message('\u2605 Filtering: moderate')
+  }else if (filtering == 'more'){
+    target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts >= 6,]
+    message('\u2605 Filtering: more')
   }
-
 
 
   miRNA_f <- intersect(unique(target.t.val[,c('miRNA_names')]),row.names(miRNA_with_precurer))

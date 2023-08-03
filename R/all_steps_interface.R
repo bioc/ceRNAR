@@ -19,7 +19,7 @@
 #' @param mirna_exp location of miRNA expression data (default: mirna_exp)
 #' @param surv_data location of survival data (default: surv_data)
 #' @param filtering three different filtering criteria, including "strict",
-#' "moderate" and "less". If the value is null, then a demo case will be applied. (Default: NULL)
+#' "moderate" and "less". (Default: more)
 #' @param window_size the number of samples for each window (default:10)
 #' @param cor_method selection of correlation methods, including pearson and
 #' spearman (default: pearson)
@@ -40,7 +40,7 @@
 #' gene_exp = gene_exp,
 #' mirna_exp = mirna_exp,
 #' surv_data = surv_data,
-#' filtering = NULL,
+#' filtering = 'more',
 #' window_size = 10,
 #' cor_method = 'pearson',
 #' cor_threshold_peak = 0.85)
@@ -51,7 +51,7 @@ All_steps_interface <- function(path_prefix = NULL,
                                 gene_exp = gene_exp,
                                 mirna_exp = mirna_exp,
                                 surv_data = surv_data,
-                                filtering = NULL,
+                                filtering = 'more',
                                 window_size = 10,
                                 cor_method = 'pearson',
                                 cor_threshold_peak = 0.85){
@@ -184,7 +184,7 @@ All_steps_interface <- function(path_prefix = NULL,
   ceRNAputativePairs <- function(path_prefix = NULL,
                                  project_name = 'demo',
                                  disease_name = 'DLBC',
-                                 filtering = 'less'){
+                                 filtering = 'more'){
 
     if (!stringr::str_detect(path_prefix, '/')){
       path_prefix <- paste0(path_prefix, '/')
@@ -203,22 +203,18 @@ All_steps_interface <- function(path_prefix = NULL,
     miRNA_with_precurer <- miRNA_with_precurer[,-1]
 
     # miRNA-mRNA validation
-    if (is.null(filtering)){
-      message('This is demo case!')
-      target.t.val <- get0("mirna_mrna_pairsdemo", envir = asNamespace("ceRNAR"))
-    }else{
-      target <- get0("mirna_mrna_pairsdb", envir = asNamespace("ceRNAR"))
-      if (filtering == 'strict'){
-        target.t.val <- target[target$evidence_levels == "Strong" & target$total_counts == 7,]
-        message('\u2605 Filtering: strict')
-      }else if (filtering == 'moderate') {
-        target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts == 7,]
-        message('\u2605 Filtering: moderate')
-      }else if (filtering == 'less'){
-        target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts >= 6,]
-        message('\u2605 Filtering: less')
-      }
-    }
+   target <- get0("mirna_mrna_pairsdb", envir = asNamespace("ceRNAR"))
+   if (filtering == 'strict'){
+     target.t.val <- target[target$evidence_levels == "Strong" & target$total_counts == 7,]
+     message('\u2605 Filtering: strict')
+   }else if (filtering == 'moderate') {
+     target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts == 7,]
+     message('\u2605 Filtering: moderate')
+   }else if (filtering == 'more'){
+     target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts >= 6,]
+     message('\u2605 Filtering: more')
+   }
+
 
 
     miRNA_f <- intersect(unique(target.t.val[,c('miRNA_names')]),row.names(miRNA_with_precurer))

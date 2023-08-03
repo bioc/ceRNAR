@@ -8,7 +8,7 @@ ceRNAputativePairs(
   path_prefix = NULL,
   project_name = "demo",
   disease_name = "DLBC",
-  filtering = NULL
+  filtering = "more"
 )
 }
 \arguments{
@@ -19,7 +19,7 @@ ceRNAputativePairs(
 \item{disease_name}{the abbreviation of disease that users are interested in}
 
 \item{filtering}{three different filtering criteria, including "strict",
-"moderate" and "less". If the value is null, then a demo case will be applied. (Default: NULL)}
+"moderate" and "more". (Default: more)}
 }
 \value{
 none
@@ -32,7 +32,7 @@ ceRNAputativePairs(
 path_prefix = NULL,
 project_name ='demo',
 disease_name = 'DLBC',
-filtering = NULL
+filtering = 'more'
 )
 
 
