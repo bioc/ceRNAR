@@ -25,6 +25,7 @@
 #' @export
 #'
 #' @examples
+#' library(SPONGE)
 #' ceRNAIntegrate(
 #' path_prefix = NULL,
 #' project_name = 'demo',
