@@ -5,6 +5,8 @@
 #' by ceRNAR algorithm with those from other tools, such as SPONGE (List et al.,
 #' 2019) and RJAMI (Hornakova et al.,2018)
 #'
+#' @import foreach
+#' @import future
 #' @import utils
 #' @import GDCRNATools
 #' @importFrom gRbase combn_prim
@@ -18,25 +20,21 @@
 #' @param path_prefix user's working directory
 #' @param project_name the project name that users can assign
 #' @param disease_name the abbreviation of disease that users are interested in
-#' @param num_workers the number of CPU
 #'
 #' @return a dataframe object
 #' @export
 #'
 #' @examples
-#' library(SPONGE)
 #' ceRNAIntegrate(
 #' path_prefix = NULL,
 #' project_name = 'demo',
-#' disease_name = 'DLBC',
-#' num_workers = 1
+#' disease_name = 'DLBC'
 #' )
 #'
 
 ceRNAIntegrate <- function(path_prefix = NULL,
                            project_name = 'demo',
-                           disease_name = 'DLBC',
-                           num_workers = 1){
+                           disease_name = 'DLBC'){
 
   if (is.null(path_prefix)){
     path_prefix <- fs::path_home()
@@ -73,9 +71,19 @@ ceRNAIntegrate <- function(path_prefix = NULL,
     d[gene_pair,i] <- 1
   }
 
-  if (num_workers != 1){
-    doParallel::registerDoParallel(num_workers)
+  chk <- Sys.getenv("_R_CHECK_LIMIT_CORES_", "")
+
+  if ((nzchar(chk)) && (chk == "TRUE")) {
+    # use 2 cores in CRAN/Travis/AppVeyor
+    num_workers <- 2L
+    # use 1 cores in CRAN/Travis/AppVeyor
+    num_workers <- 1L
+  } else {
+    # use all cores in devtools::test()
+    num_workers <- availableCores()-3
   }
+
+  doParallel::registerDoParallel(num_workers)
 
   mir_expr <- t(mirna)
   gene_expr <- t(mrna)
@@ -87,7 +95,7 @@ ceRNAIntegrate <- function(path_prefix = NULL,
   ceRNA_interactions <- SPONGE::sponge(gene_expr = gene_expr,
                                mir_expr = mir_expr,
                                mir_interactions = genes_miRNA_candidates)
-  precomputed_cov_matrices <- precomputed_cov_matrices
+  precomputed_cov_matrices <- SPONGE::precomputed_cov_matrices
   mscor_null_model <- SPONGE::sponge_build_null_model(number_of_datasets = 100,
                                               number_of_samples = dim(gene_expr)[1])
   sponge_result <- SPONGE::sponge_compute_p_values(sponge_result = ceRNA_interactions,
