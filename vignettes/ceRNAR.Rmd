@@ -199,6 +199,7 @@ knitr::kable(external_val_result[1:5,1:8], row.names = FALSE)
 This function allows users to further combine results obtained from ceRNAR with other state-of-the-art tools in ceRNA biological field, including SPONGE [10] and GDCRNATools [11]. (Note: Unfortunately, we discarded JAMI R package for this part in final version because this package is not presented on either CRAN or Bioconductor. But we kept our source code on github.)
 
 ```{r message=FALSE, results='hide'}
+library(SPONGE)
 integrated_result <- ceRNAIntegrate(project_name = 'demo', disease_name = 'DLBC')
 ```
 
