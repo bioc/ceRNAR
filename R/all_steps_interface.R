@@ -40,7 +40,7 @@
 #' gene_exp = gene_exp,
 #' mirna_exp = mirna_exp,
 #' surv_data = surv_data,
-#' filtering = NULL,
+#' filtering = 'less',
 #' window_size = 10,
 #' cor_method = 'pearson',
 #' cor_threshold_peak = 0.85)
@@ -51,7 +51,7 @@ All_steps_interface <- function(path_prefix = NULL,
                                 gene_exp = gene_exp,
                                 mirna_exp = mirna_exp,
                                 surv_data = surv_data,
-                                filtering = NULL,
+                                filtering = 'less',
                                 window_size = 10,
                                 cor_method = 'pearson',
                                 cor_threshold_peak = 0.85){
@@ -184,9 +184,15 @@ All_steps_interface <- function(path_prefix = NULL,
   ceRNAputativePairs <- function(path_prefix = NULL,
                                  project_name = 'demo',
                                  disease_name = 'DLBC',
-                                 filtering = NULL){
+                                 filtering = 'less'){
 
-    if (!stringr::str_detect(path_prefix, '/')){
+    if (is.null(path_prefix)){
+      path_prefix <- fs::path_home()
+    }else{
+      path_prefix <- path_prefix
+    }
+
+    if (!stringr::str_detect(path_prefix, '/$')){
       path_prefix <- paste0(path_prefix, '/')
     }
 
@@ -195,30 +201,25 @@ All_steps_interface <- function(path_prefix = NULL,
     ## match to interaction database
     message('\u25CF Step 2: Obtaining putative mRNA-miRNA pairs')
     # load processed mRNA and miRNA data
-    annot_cdRNA_unique <- as.data.frame(data.table::fread(paste0(path_prefix, '/', project_name,'-',disease_name,'/01_rawdata/',project_name,'-', disease_name,'_mrna.csv')))
+    annot_cdRNA_unique <- as.data.frame(data.table::fread(paste0(path_prefix, project_name,'-',disease_name,'/01_rawdata/',project_name,'-', disease_name,'_mrna.csv')))
     row.names(annot_cdRNA_unique) <- annot_cdRNA_unique[,1]
     annot_cdRNA_unique <- annot_cdRNA_unique[,-1]
-    miRNA_with_precurer <- as.data.frame(data.table::fread(paste0(path_prefix, '/', project_name,'-',disease_name,'/01_rawdata/',project_name,'-', disease_name,'_mirna.csv')))
+    miRNA_with_precurer <- as.data.frame(data.table::fread(paste0(path_prefix, project_name,'-',disease_name,'/01_rawdata/',project_name,'-', disease_name,'_mirna.csv')))
     row.names(miRNA_with_precurer) <- miRNA_with_precurer[,1]
     miRNA_with_precurer <- miRNA_with_precurer[,-1]
 
     # miRNA-mRNA validation
-    if (is.null(filtering)){
-      target.t.val <-get0("mirna_mrna_pairsdemo", envir = asNamespace("ceRNAR"))
-    }else{
-      target <- get0("mirna_mrna_pairsdb", envir = asNamespace("ceRNAR"))
-      if (filtering == 'strict'){
-        target.t.val <- target[target$evidence_levels == "Strong" & target$total_counts == 7,]
-        message('\u2605 Filtering: strict')
-      }else if (filtering == 'moderate') {
-        target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts == 7,]
-        message('\u2605 Filtering: moderate')
-      }else if (filtering == 'less'){
-        target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts >= 6,]
-        message('\u2605 Filtering: less')
-      }
+    target <- get0("mirna_mrna_pairsdb", envir = asNamespace("ceRNAR"))
+    if (filtering == 'strict'){
+      target.t.val <- target[target$evidence_levels == "Strong" & target$total_counts == 7,]
+      message('\u2605 Filtering: strict')
+    }else if (filtering == 'moderate') {
+      target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts == 7,]
+      message('\u2605 Filtering: moderate')
+    }else if (filtering == 'less'){
+      target.t.val <- target[target$evidence_levels == "Strong" | target$total_counts >= 6,]
+      message('\u2605 Filtering: less')
     }
-
 
     miRNA_f <- intersect(unique(target.t.val[,c('miRNA_names')]),row.names(miRNA_with_precurer))
     target.t.val <- target.t.val[target.t.val$miRNA_names %in% miRNA_f,]  # overlap mirna between target database and gse miRNA profiles
@@ -226,8 +227,8 @@ All_steps_interface <- function(path_prefix = NULL,
 
     message('\u2605 Total putative mRNA-miRNA pairs are ', sum(rownames(annot_cdRNA_unique) %in% target.t.val$gene_names), '!')
 
-    if (dir.exists(paste0(path_prefix, '/', project_name,'-',disease_name,'/02_potentialPairs')) == FALSE){
-      dir.create(paste0(path_prefix, '/', project_name,'-',disease_name,'/02_potentialPairs'))
+    if (dir.exists(paste0(path_prefix, project_name,'-',disease_name,'/02_potentialPairs')) == FALSE){
+      dir.create(paste0(path_prefix, project_name,'-',disease_name,'/02_potentialPairs'))
     }
 
     # input for ceRNA identification step
@@ -239,7 +240,7 @@ All_steps_interface <- function(path_prefix = NULL,
         dictionary <- rbind(dictionary,c(mirna,tmp_list))
       }
     }
-    saveRDS(dictionary, paste0(path_prefix, '/', project_name,'-',disease_name,'/02_potentialPairs/',project_name,'-',disease_name,'_MirnaTarget_dictionary.rds'))
+    saveRDS(dictionary, paste0(path_prefix, project_name,'-',disease_name,'/02_potentialPairs/',project_name,'-',disease_name,'_MirnaTarget_dictionary.rds'))
     message('(\u2714) Putative results have been created and stored!')
     time2 <- Sys.time()
     diftime <- difftime(time2, time1, units = 'min')
