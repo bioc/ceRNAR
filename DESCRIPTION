@@ -22,7 +22,7 @@ Encoding: UTF-8
 Depends: R(>= 4.2.0)
 Imports:cowplot, data.table, DNAcopy, doParallel, GGally,
         psych, purrr, quantmod, stringr, tidyr, utils, grDevices, fs,
-        foreach, cvms, ggplot2, magrittr, rlang, stats, gRbase,
+        foreach, cvms, ggplot2, rlang, stats, gRbase,
         tidyverse, org.Hs.eg.db, SPONGE, GDCRNATools, parallel,
         dplyr, curatedTCGAData, future, methods, randomForest, zoo, ggpubr, sna
 VignetteBuilder: knitr
