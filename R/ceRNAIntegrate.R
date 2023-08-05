@@ -81,7 +81,7 @@ ceRNAIntegrate <- function(path_prefix = NULL,
     num_workers <- 1L
   } else {
     # use all cores in devtools::test()
-    num_workers <- availableCores()-3
+    num_workers <- availableCores()-1
   }
 
   doParallel::registerDoParallel(num_workers)
