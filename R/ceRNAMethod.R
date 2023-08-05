@@ -91,7 +91,7 @@ ceRNAMethod <- function(path_prefix = NULL,
         num_workers <- 1L
       } else {
         # use all cores in devtools::test()
-        num_workers <- availableCores()-1
+        num_workers <- availableCores()-3
       }
 
       # create a cluster
@@ -213,7 +213,7 @@ ceRNAMethod <- function(path_prefix = NULL,
         num_workers <- 1L
       } else {
         # use all cores in devtools::test()
-        num_workers <- availableCores()-1
+        num_workers <- availableCores()-3
       }
 
       # create a cluster
