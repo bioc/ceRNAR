@@ -44,15 +44,24 @@ ceRNAputativePairs(project_name = 'demo', disease_name = 'DLBC', filtering = 'le
 ```
 
 
-3. conduct main algorithm through one of following ways
+3. conduct main algorithm .
 
-  + through `ceRNAMethod()` (preferred)
 
-```{r eval=FALSE}
-ceRNAMethod(project_name = 'demo', disease_name = "DLBC", window_size = 10, num_workers = 1)
-```
 
-  + through `ceRNApairFilering()` and `SegmentClusteringPlusPeakMerging()`
+
+
+
+
+
+
+
+
+
+
+
+
+
+through `ceRNApairFilering()` and `SegmentClusteringPlusPeakMerging()`
   
 ```{r eval=FALSE}
 ceRNApairFilering(project_name = 'demo', disease_name = "DLBC", window_size = 10, num_workers = 1)

@@ -50,16 +50,7 @@ ceRNACustomize(project_name = 'demo', disease_name = 'DLBC', gene_exp = gene_exp
 ceRNAputativePairs(project_name = 'demo', disease_name = 'DLBC', filtering = 'less')
 ```
 
-3.  conduct main algorithm through one of following ways
-
--   through `ceRNAMethod()`
-
-``` r
-ceRNAMethod(project_name = 'demo', disease_name = "DLBC", window_size = 10, num_workers = 1)
-```
-
--   through `ceRNApairFilering()` and
-    `SegmentClusteringPlusPeakMerging()`
+3.  conduct main algorithm through `ceRNApairFilering()` and `SegmentClusteringPlusPeakMerging()`
 
 ``` r
 ceRNApairFilering(project_name = 'demo', disease_name = "DLBC", window_size = 10, num_workers = 1)

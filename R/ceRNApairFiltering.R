@@ -21,13 +21,13 @@
 #' @export
 #'
 #' @examples
-#' ceRNApairFilering(
+#' \dontrun{ceRNApairFilering(
 #' path_prefix = NULL,
 #' project_name = 'demo',
 #' disease_name = 'DLBC',
 #' window_size = 10,
 #' cor_method = 'pearson'
-#' )
+#' )}
 #'
 #'
 

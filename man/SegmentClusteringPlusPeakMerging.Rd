@@ -32,10 +32,10 @@ a dataframe object
 A function to conduct two of three steps in algorithm, that is, segment clustering and peak merging
 }
 \examples{
-SegmentClusteringPlusPeakMerging(
+\dontrun{SegmentClusteringPlusPeakMerging(
 project_name = 'demo',
 disease_name = 'DLBC',
 cor_threshold_peak = 0.85,
-window_size = 10)
+window_size = 10)}
 
 }
