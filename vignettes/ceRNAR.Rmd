@@ -118,12 +118,6 @@ ceRNApairFilering(project_name = 'demo', disease_name = "DLBC", window_size = 10
 cernar_result <- SegmentClusteringPlusPeakMerging(project_name = 'demo', disease_name = "DLBC", window_size = 10)
 ```
 
-Alternatively, `ceRNAMethod()` which encapsulated above two functions can be used:
-
-```{r message=FALSE, warning=FALSE, results='hide'}
-cernar_result <- ceRNAMethod(project_name = 'demo', disease_name = 'DLBC', window_size = 10)
-```
-
 The final output stores the most important ceRNA events identified by the package:
 ```{r echo=FALSE, message=FALSE}
 knitr::kable(cernar_result[1:5,])
