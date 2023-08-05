@@ -114,8 +114,14 @@ ceRNAputativePairs(project_name = 'demo', disease_name = 'DLBC', filtering = 'le
 ## ceRNA interaction
 
 ```{r message=FALSE, warning=FALSE, results='hide'}
-ceRNApairFilering(project_name = 'demo', disease_name = "DLBC", window_size = 10)
-cernar_result <- SegmentClusteringPlusPeakMerging(project_name = 'demo', disease_name = "DLBC", window_size = 10)
+cernar_result <- ceRNAMethod(
+path_prefix = NULL,
+project_name = 'demo',
+disease_name = 'DLBC',
+window_size = 10,
+cor_method = 'pearson',
+cor_threshold_peak = 0.85
+)
 ```
 
 The final output stores the most important ceRNA events identified by the package:
