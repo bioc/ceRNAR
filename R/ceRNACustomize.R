@@ -21,14 +21,14 @@
 #' data(gene_exp)
 #' data(mirna_exp)
 #' data(surv_data)
-#' ceRNACustomize(
+#' \dontrun{ceRNACustomize(
 #' path_prefix = NULL,
 #' project_name = 'demo',
 #' disease_name = 'DLBC',
 #' gene_exp = gene_exp,
 #' mirna_exp = mirna_exp,
 #' surv_data = surv_data
-#' )
+#' )}
 #'
 #'
 
