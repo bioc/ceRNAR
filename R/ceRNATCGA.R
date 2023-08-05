@@ -56,8 +56,8 @@ ceRNATCGA <- function(path_prefix = NULL,
 
   file.rename(paste0(path_prefix, project_name,'-', disease_name, '/01_rawdata/', project_name,'_colData.csv'), paste0(path_prefix, project_name,'-', disease_name, '/01_rawdata/', project_name,'-', disease_name,'_phenotype.csv'))
 
-  junk <- dir(path=paste0(path_prefix, project_name,'-', disease_name, '/01_rawdata'),  pattern="TCGA_") # ?dir
-  file.remove(paste0(path_prefix, project_name,'-', disease_name, '/01_rawdata/',junk))
+  # junk <- dir(path=paste0(path_prefix, project_name,'-', disease_name, '/01_rawdata'),  pattern="TCGA_") # ?dir
+  # file.remove(paste0(path_prefix, project_name,'-', disease_name, '/01_rawdata/',junk))
 
   temp <-  list.files(path = paste0(path_prefix, project_name,'-', disease_name, '/01_rawdata'), pattern="*.csv")
   temp_name <- gsub(paste0(project_name,'-', disease_name,"_"),"",gsub(".csv", "", temp))
