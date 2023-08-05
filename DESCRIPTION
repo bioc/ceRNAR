@@ -2,7 +2,7 @@ Package: ceRNAR
 Type: Package
 Title: ceRNAR: An R Package for Identification and Analysis of
         ceRNAs-miRNA Triplets
-Version: 0.99.49
+Version: 0.99.50
 Authors@R: c(person(given = "Yi-Wen",
            family = "Hsiao",
            role = c("aut", "cre"),
@@ -24,7 +24,7 @@ Imports:cowplot, data.table, DNAcopy, doParallel, GGally,
         psych, purrr, quantmod, stringr, tidyr, utils, grDevices, fs,
         foreach, cvms, ggplot2, magrittr, rlang, stats, gRbase,
         tidyverse, org.Hs.eg.db, SPONGE, GDCRNATools, parallel,
-        dplyr, curatedTCGAData, future, methods, randomForest, zoo, ggpubr
+        dplyr, curatedTCGAData, future, methods, randomForest, zoo, ggpubr, sna
 VignetteBuilder: knitr
 RoxygenNote: 7.2.3
 Suggests: rmarkdown, knitr, ggpubr, survival, survminer, GOSemSim,
