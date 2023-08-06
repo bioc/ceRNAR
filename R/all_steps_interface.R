@@ -253,12 +253,12 @@ All_steps_interface <- function(path_prefix = NULL,
     message('\u2605\u2605\u2605 Ready to next step! \u2605\u2605\u2605')
 
   }
-  ceRNAputativePairs(
-  path_prefix = NULL,
-  project_name ='demo',
-  disease_name = 'DLBC',
-  filtering = filtering
-  )
+
+  ceRNAputativePairs(path_prefix = NULL,
+                     project_name ='demo',
+                     disease_name = 'DLBC',
+                     filtering = filtering)
+
   # method: pair filtering +segment clustering
   ceRNAMethod <- function(path_prefix = NULL,
                           project_name = 'demo',
@@ -308,17 +308,18 @@ All_steps_interface <- function(path_prefix = NULL,
 
 
       slidingWindow <- function(window_size, mirna_total, cor_method){
-        chk <- Sys.getenv("_R_CHECK_LIMIT_CORES_", "")
+        num_workers <- availableCores()-2
+        #chk <- Sys.getenv("_R_CHECK_LIMIT_CORES_", "")
 
-        if ((nzchar(chk)) && (chk == "TRUE")) {
-          # use 2 cores in CRAN/Travis/AppVeyor
-          num_workers <- 2L
-          # use 1 cores in CRAN/Travis/AppVeyor
-          num_workers <- 1L
-        } else {
-          # use all cores in devtools::test()
-          num_workers <- availableCores()-2
-        }
+        # if ((nzchar(chk)) && (chk == "TRUE")) {
+        #   # use 2 cores in CRAN/Travis/AppVeyor
+        #   num_workers <- 2L
+        #   # use 1 cores in CRAN/Travis/AppVeyor
+        #   num_workers <- 1L
+        # } else {
+        #   # use all cores in devtools::test()
+        #   num_workers <- availableCores()-2
+        # }
 
         # create a cluster
         doParallel::registerDoParallel(num_workers)
@@ -430,17 +431,17 @@ All_steps_interface <- function(path_prefix = NULL,
         gene_pair <- combn(gene, 2)
         total_pairs <- choose(length(gene), 2)
 
-        chk <- Sys.getenv("_R_CHECK_LIMIT_CORES_", "")
-
-        if ((nzchar(chk)) && (chk == "TRUE")) {
-          # use 2 cores in CRAN/Travis/AppVeyor
-          num_workers <- 2L
-          # use 1 cores in CRAN/Travis/AppVeyor
-          num_workers <- 1L
-        } else {
-          # use all cores in devtools::test()
-          num_workers <- availableCores()-2
-        }
+        num_workers <- availableCores()-2
+        # chk <- Sys.getenv("_R_CHECK_LIMIT_CORES_", "")
+        # if ((nzchar(chk)) && (chk == "TRUE")) {
+        #   # use 2 cores in CRAN/Travis/AppVeyor
+        #   num_workers <- 2L
+        #   # use 1 cores in CRAN/Travis/AppVeyor
+        #   num_workers <- 1L
+        # } else {
+        #   # use all cores in devtools::test()
+        #   num_workers <- availableCores()-2
+        # }
 
         # create a cluster
         doParallel::registerDoParallel(num_workers)

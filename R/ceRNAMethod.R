@@ -82,17 +82,18 @@ ceRNAMethod <- function(path_prefix = NULL,
 
 
     slidingWindow <- function(window_size, mirna_total, cor_method){
-      chk <- Sys.getenv("_R_CHECK_LIMIT_CORES_", "")
-
-      if ((nzchar(chk)) && (chk == "TRUE")) {
-        # use 2 cores in CRAN/Travis/AppVeyor
-        num_workers <- 2L
-        # use 1 cores in CRAN/Travis/AppVeyor
-        num_workers <- 1L
-      } else {
-        # use all cores in devtools::test()
-        num_workers <- availableCores()-2
-      }
+      num_workers <- availableCores()-2
+      # chk <- Sys.getenv("_R_CHECK_LIMIT_CORES_", "")
+      #
+      # if ((nzchar(chk)) && (chk == "TRUE")) {
+      #   # use 2 cores in CRAN/Travis/AppVeyor
+      #   num_workers <- 2L
+      #   # use 1 cores in CRAN/Travis/AppVeyor
+      #   num_workers <- 1L
+      # } else {
+      #   # use all cores in devtools::test()
+      #   num_workers <- availableCores()-2
+      # }
 
       # create a cluster
       doParallel::registerDoParallel(num_workers)
@@ -204,17 +205,18 @@ ceRNAMethod <- function(path_prefix = NULL,
       gene_pair <- combn(gene, 2)
       total_pairs <- choose(length(gene), 2)
 
-      chk <- Sys.getenv("_R_CHECK_LIMIT_CORES_", "")
-
-      if ((nzchar(chk)) && (chk == "TRUE")) {
-        # use 2 cores in CRAN/Travis/AppVeyor
-        num_workers <- 2L
-        # use 1 cores in CRAN/Travis/AppVeyor
-        num_workers <- 1L
-      } else {
-        # use all cores in devtools::test()
-        num_workers <- availableCores()-2
-      }
+      num_workers <- availableCores()-2
+      # chk <- Sys.getenv("_R_CHECK_LIMIT_CORES_", "")
+      #
+      # if ((nzchar(chk)) && (chk == "TRUE")) {
+      #   # use 2 cores in CRAN/Travis/AppVeyor
+      #   num_workers <- 2L
+      #   # use 1 cores in CRAN/Travis/AppVeyor
+      #   num_workers <- 1L
+      # } else {
+      #   # use all cores in devtools::test()
+      #   num_workers <- availableCores()-2
+      # }
 
       # create a cluster
       doParallel::registerDoParallel(num_workers)
