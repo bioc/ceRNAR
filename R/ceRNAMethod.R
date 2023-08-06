@@ -82,7 +82,7 @@ ceRNAMethod <- function(path_prefix = NULL,
 
 
     slidingWindow <- function(window_size, mirna_total, cor_method){
-      num_workers <- availableCores()-2
+      num_workers <- availableCores()
       # chk <- Sys.getenv("_R_CHECK_LIMIT_CORES_", "")
       #
       # if ((nzchar(chk)) && (chk == "TRUE")) {
@@ -205,7 +205,7 @@ ceRNAMethod <- function(path_prefix = NULL,
       gene_pair <- combn(gene, 2)
       total_pairs <- choose(length(gene), 2)
 
-      num_workers <- availableCores()-2
+      num_workers <- availableCores()
       # chk <- Sys.getenv("_R_CHECK_LIMIT_CORES_", "")
       #
       # if ((nzchar(chk)) && (chk == "TRUE")) {
