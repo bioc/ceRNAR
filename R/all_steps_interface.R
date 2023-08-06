@@ -211,7 +211,7 @@ All_steps_interface <- function(path_prefix = NULL,
 
     # miRNA-mRNA validation
     if (is.null(filtering)){
-      target.t.val <- ceRNAR:::mirna_mrna_pairsdemo
+      target.t.val <- get0("mirna_mrna_pairsdemo", envir = asNamespace("ceRNAR"))
     }else{
       target <- get0("mirna_mrna_pairsdb", envir = asNamespace("ceRNAR"))
       if(filtering == 'less'){
