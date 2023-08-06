@@ -103,12 +103,12 @@ ceRNATCGA(project_name = 'TCGA', disease_name = 'DLBC')
 
 Here, ceRNAR comes with 2 experimentally validated miRNA-target databases ([miRTarBase](https://mirtarbase.cuhk.edu.cn/~miRTarBase/miRTarBase_2022/php/index.php) and miRecords[6]) and 7 computationally predicted miRNA-target databases DIANA-micro T-CDS [7], EIMMO [8], [miRDB](https://mirdb.org/), [miRanda](https://bioweb.pasteur.fr/packages/pack@miRanda@3.3a), [PITA](https://genie.weizmann.ac.il/pubs/mir07/mir07_prediction.html), [RNA22](https://cm.jefferson.edu/rna22/) and TargetScan [9] for only considering genes with shared miRNAs. Three options for filtering putative miRNA-gene pairs:
 
-- `strict`: experimentally validated by 2 databases and predicted by 7 databases 
+- `less`: experimentally validated by 2 databases and predicted by 7 databases 
 - `moderate`: experimentally validated by 2 databases or predicted by 7 databases
-- `less`: experimentally validated by 2 databases or predicted by more than 6 databases
+- `more`: experimentally validated by 2 databases or predicted by more than 6 databases
 
 ```{r}
-ceRNAputativePairs(project_name = 'demo', disease_name = 'DLBC', filtering = 'less')
+ceRNAputativePairs(project_name = 'demo', disease_name = 'DLBC', filtering = NULL)
 ```
 
 ## ceRNA interaction

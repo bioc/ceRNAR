@@ -81,7 +81,7 @@ ceRNAIntegrate <- function(path_prefix = NULL,
     num_workers <- 1L
   } else {
     # use all cores in devtools::test()
-    num_workers <- availableCores()-3
+    num_workers <- availableCores()-2
   }
 
   doParallel::registerDoParallel(num_workers)
@@ -145,8 +145,16 @@ ceRNAIntegrate <- function(path_prefix = NULL,
   gene_target_lst <- tmp
   ceOutput_list <- list()
   for (k in 1:dim(gene_exp)[1]){
-    ceOutput_tmp <- GDCRNATools::gdcCEAnalysis(lnc = row.names(gene_exp)[k],pc  = row.names(gene_exp)[-k], lnc.targets = gene_target_lst, pc.targets = gene_target_lst, rna.expr = gene_exp, mir.expr = mir_exp)%>%
-      suppressMessages()
+    #k = 10
+    ceOutput_tmp = tryCatch({
+      GDCRNATools::gdcCEAnalysis(lnc = row.names(gene_exp)[k],
+                                 pc= row.names(gene_exp)[-k],
+                                 lnc.targets = gene_target_lst,
+                                 pc.targets = gene_target_lst,
+                                 rna.expr = gene_exp,
+                                 mir.expr = mir_exp)%>%
+        suppressMessages()
+    }, error = function(e) {})
     ceOutput_list[[k]] <- ceOutput_tmp
   }
 
