@@ -25,17 +25,17 @@
 #' @export
 #'
 #' @examples
-# ceRNAFunction(
-# path_prefix = NULL,
-# project_name = 'demo',
-# disease_name = 'DLBC',
-# pairs_cutoff = 1,
-# kegg_p_cutoff = 0.05,
-# kegg_top = 10,
-# go_p_cutoff = 0.05,
-# go_q_cutoff = 0.05,
-# go_top = 10
-# )
+#' ceRNAFunction(
+#' path_prefix = NULL,
+#' project_name = 'demo',
+#' disease_name = 'DLBC',
+#' pairs_cutoff = 1,
+#' kegg_p_cutoff = 0.05,
+#' kegg_top = 10,
+#' go_p_cutoff = 0.05,
+#' go_q_cutoff = 0.05,
+#' go_top = 10
+#' )
 #'
 #'
 

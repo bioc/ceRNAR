@@ -63,4 +63,5 @@ filtering = NULL,
 window_size = 10,
 cor_method = 'pearson',
 cor_threshold_peak = 0.85)
+
 }

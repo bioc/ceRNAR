@@ -18,8 +18,8 @@ ceRNAputativePairs(
 
 \item{disease_name}{the abbreviation of disease that users are interested in}
 
-\item{filtering}{three different filtering criteria, including "strict",
-"moderate" and "less". If the value is null, then a demo case will be applied. (Default: NULL)}
+\item{filtering}{three different filtering criteria, including "less",
+"moderate" and "more". If the value is null, then a demo case will be applied. (Default: NULL)}
 }
 \value{
 none
