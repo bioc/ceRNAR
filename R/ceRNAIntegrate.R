@@ -102,8 +102,12 @@ ceRNAIntegrate <- function(path_prefix = NULL,
   sponge_result <- SPONGE::sponge_compute_p_values(sponge_result = ceRNA_interactions,
                                                    null_model = mscor_null_model)
   sponge_result_sig <- sponge_result[sponge_result$p.adj<=0.05,]
-  sponge_result_sig$genepairs_1 <- paste0(sponge_result_sig$geneA, '|', sponge_result_sig$geneB)
-  sponge_result_sig$genepairs_2 <- paste0(sponge_result_sig$geneB, '|', sponge_result_sig$geneA)
+  if(dim(sponge_result_sig)[1]!=0){
+    sponge_result_sig$genepairs_1 <- paste0(sponge_result_sig$geneA, '|', sponge_result_sig$geneB)
+    sponge_result_sig$genepairs_2 <- paste0(sponge_result_sig$geneB, '|', sponge_result_sig$geneA)
+
+  }
+
 
   # JAMI (not on CRAN or Bioconductor)
   # mir_exp <- mirna
@@ -175,9 +179,14 @@ ceRNAIntegrate <- function(path_prefix = NULL,
   our_result$genepairs <- paste0(our_result$geneA, '|', our_result$geneB)
 
   # integrate
-  sponge_integrate <- c(intersect(our_result$genepairs,sponge_result_sig$genepairs_1),intersect(our_result$genepairs,sponge_result_sig$genepairs_2))
-  our_result$sponge <- '-'
-  our_result$sponge[our_result$genepairs%in%sponge_integrate] <- 'yes'
+  if(dim(sponge_result_sig)[1]!=0){
+    sponge_integrate <- c(intersect(our_result$genepairs,sponge_result_sig$genepairs_1),intersect(our_result$genepairs,sponge_result_sig$genepairs_2))
+    our_result$sponge <- '-'
+    our_result$sponge[our_result$genepairs%in%sponge_integrate] <- 'yes'
+  }else{
+    our_result$sponge <- '-'
+  }
+
   # rjami_integrate <- intersect(our_result$triplets,rjami_result_sig$triplets)
   # our_result$rjami <- '-'
   # our_result$rjami[our_result$triplets%in%rjami_integrate] <- 'yes'
