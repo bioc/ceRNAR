@@ -108,14 +108,13 @@ Here, ceRNAR comes with 2 experimentally validated miRNA-target databases ([miRT
 - `more`: experimentally validated by 2 databases or predicted by more than 6 databases
 
 ```{r}
-ceRNAputativePairs(project_name = 'demo', disease_name = 'DLBC', filtering = NULL)
+ceRNAputativePairs(project_name = 'demo', disease_name = 'DLBC')
 ```
 
 ## ceRNA interaction
 
 ```{r message=FALSE, warning=FALSE, results='hide'}
 cernar_result <- ceRNAMethod(
-path_prefix = NULL,
 project_name = 'demo',
 disease_name = 'DLBC',
 window_size = 10,

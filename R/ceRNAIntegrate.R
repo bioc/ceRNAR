@@ -159,9 +159,11 @@ ceRNAIntegrate <- function(path_prefix = NULL,
   }
 
   ceOutput <- Reduce(rbind,ceOutput_list)
-  ceOutput_sig <- ceOutput[ceOutput$hyperPValue<0.05,]
-  ceOutput_sig$genepairs_1 <- paste0(ceOutput_sig$lncRNAs, '|', ceOutput_sig$Genes)
-  ceOutput_sig$genepairs_2 <- paste0(ceOutput_sig$Genes, '|', ceOutput_sig$lncRNAs)
+  ceOutput_sig <- ceOutput[ceOutput$hyperPValue<=0.05,]
+  if(dim(ceOutput_sig)[1]!=0){
+    ceOutput_sig$genepairs_1 <- paste0(ceOutput_sig$lncRNAs, '|', ceOutput_sig$Genes)
+    ceOutput_sig$genepairs_2 <- paste0(ceOutput_sig$Genes, '|', ceOutput_sig$lncRNAs)
+  }
 
   # our results
   our_result <- as.data.frame(utils::read.csv(paste0(path_prefix, project_name,'-',disease_name,'/',project_name,'-',disease_name,'_finalpairs.csv')))
@@ -179,9 +181,14 @@ ceRNAIntegrate <- function(path_prefix = NULL,
   # rjami_integrate <- intersect(our_result$triplets,rjami_result_sig$triplets)
   # our_result$rjami <- '-'
   # our_result$rjami[our_result$triplets%in%rjami_integrate] <- 'yes'
-  GDCRNATools_integrate <- c(intersect(our_result$genepairs,ceOutput_sig$genepairs_1),intersect(our_result$genepairs,ceOutput_sig$genepairs_2))
-  our_result$GDCRNATools <- '-'
-  our_result$GDCRNATools[our_result$genepairs%in%GDCRNATools_integrate] <- 'yes'
+
+  if(dim(ceOutput_sig)[1]!=0){
+    GDCRNATools_integrate <- c(intersect(our_result$genepairs,ceOutput_sig$genepairs_1),intersect(our_result$genepairs,ceOutput_sig$genepairs_2))
+    our_result$GDCRNATools <- '-'
+    our_result$GDCRNATools[our_result$genepairs%in%GDCRNATools_integrate] <- 'yes'
+  }else{
+    our_result$GDCRNATools <- '-'
+  }
 
   utils::write.csv(our_result, paste0(path_prefix, project_name,'-',disease_name,'/04_downstreamAnalyses/integration/',project_name,'-',disease_name,'_integrate.csv'), row.names = FALSE)
   time2 <- Sys.time()
