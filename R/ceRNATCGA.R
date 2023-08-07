@@ -16,11 +16,11 @@
 #' @export
 #'
 #' @examples
-#' ceRNATCGA(
+#'  \dontrun{ceRNATCGA(
 #' path_prefix = NULL,
 #' project_name = 'TCGA',
 #' disease_name = 'DLBC'
-#' )
+#' )}
 #'
 
 ceRNATCGA <- function(path_prefix = NULL,
