@@ -28,12 +28,12 @@ none
 A function to obtain putative mRNA-miRNA pairs from several databases
 }
 \examples{
-ceRNAputativePairs(
+\donttest{ceRNAputativePairs(
 path_prefix = NULL,
 project_name ='demo',
 disease_name = 'DLBC',
 filtering = NULL
-)
+)}
 
 
 }
