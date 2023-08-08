@@ -21,10 +21,10 @@ none
 A function to retrieve TCGA data
 }
 \examples{
- \dontrun{ceRNATCGA(
+ceRNATCGA(
 path_prefix = NULL,
 project_name = 'TCGA',
 disease_name = 'DLBC'
-)}
+)
 
 }
